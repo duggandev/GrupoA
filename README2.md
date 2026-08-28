@@ -1,32 +1,31 @@
-# ValidarDisponibilidadRestaurante
+# Servicio PHP: ValidarDisponibilidadRestaurante
 
-Endpoint PHP que implementa el contrato del servicio de disponibilidad sin gestor de base de datos.
+Este proyecto implementa un endpoint PHP real para simular la disponibilidad de un restaurante sin usar base de datos.
 
-## Ejecutar
+## Archivos
 
-Desde esta carpeta:
+- `api/validarDisponibilidadRestaurante.php`: endpoint principal.
+- `data/restaurantes.json`: datos simulados del restaurante.
 
-```powershell
-php -S localhost:8000
-```
+## Endpoint
 
-## Contrato
+### Método
 
-`POST /index.php`
+- `GET` o `POST`
 
-Request JSON:
+### Entrada esperada
 
 ```json
 {
-  "id_restaurante": "rest-001",
-  "fecha": "2026-09-01",
+  "id_restaurante": 101,
+  "fecha": "2026-08-28",
   "hora": "20:00",
-  "numero_de_comensales": 4,
-  "id_zona": "terraza"
+  "numero_de_comensales": 10,
+  "id_zona": 1
 }
 ```
 
-Respuesta exitosa:
+### Respuesta exitosa
 
 ```json
 {
@@ -34,14 +33,15 @@ Respuesta exitosa:
 }
 ```
 
-La disponibilidad se calcula consultando `data/restaurants.json`: restaurante activo, zona existente, capacidad suficiente, fecha y hora habilitadas.
+### Ejemplo de uso con curl
 
-## Probar
-
-```powershell
-Invoke-RestMethod `
-  -Uri http://localhost:8000/index.php `
-  -Method Post `
-  -ContentType 'application/json' `
-  -Body '{"id_restaurante":"rest-001","fecha":"2026-09-01","hora":"20:00","numero_de_comensales":4,"id_zona":"terraza"}'
+```bash
+php -S localhost:8000 -t .
+curl -X POST http://localhost:8000/api/validarDisponibilidadRestaurante.php \
+  -H "Content-Type: application/json" \
+  -d '{"id_restaurante":101,"fecha":"2026-08-28","hora":"20:00","numero_de_comensales":10,"id_zona":1}'
 ```
+
+## Nota
+
+El servicio usa un archivo JSON como fuente de datos simulada, cumpliendo con el requisito de no depender de un gestor de base de datos.
