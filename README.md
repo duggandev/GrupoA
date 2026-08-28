@@ -35,7 +35,7 @@ Respuesta con parámetros inválidos:
 
 ```json
 {
-  "error": "Parámetros inválidos. Se requieren 'origen', 'destino' y 'distancia' (numérico)."
+  "error": "Parámetros inválidos. Se requieren 'origen', 'destino' y 'distancia' (numérico no negativo)."
 }
 ```
 
