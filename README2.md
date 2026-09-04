@@ -33,6 +33,10 @@ Este proyecto implementa un endpoint PHP real para simular la disponibilidad de 
 }
 ```
 
+### URL POSTMAN
+
+http://localhost:8000/api/validarDisponibilidadRestaurante.php
+
 ### Ejemplo de uso con curl
 
 ```bash
@@ -42,6 +46,4 @@ curl -X POST http://localhost:8000/api/validarDisponibilidadRestaurante.php \
   -d '{"id_restaurante":101,"fecha":"2026-08-28","hora":"20:00","numero_de_comensales":10,"id_zona":1}'
 ```
 
-## Nota
 
-El servicio usa un archivo JSON como fuente de datos simulada, cumpliendo con el requisito de no depender de un gestor de base de datos.
