@@ -13,10 +13,22 @@ if (!$data || !isset($data['id_restaurante'], $data['fecha'], $data['hora'], $da
 $restaurantes = json_decode(file_get_contents(__DIR__ . '/../data/restaurantes.json'), true);
 $existe = false;
 
+$existe = false;
+
 foreach ($restaurantes as $r) {
-    if ($r['id_restaurante'] == $data['id_restaurante']) {
-        $existe = true;
-        break;
+    // cambios 
+    // Validamos que coincidan TODOS los parámetros enviados por Postman, si un parametro es diferente al que está en json saldrá error
+    if (
+        $r['id_restaurante'] == $data['id_restaurante'] &&
+        $r['fecha'] == $data['fecha'] &&
+        $r['hora'] == $data['hora'] &&
+        $r['id_zona'] == $data['id_zona']
+    ) {
+        // Si coincide todo, evaluamos si hay espacio suficiente :D
+        if ($data['numero_de_comensales'] <= $r['numero_de_comensales']) {
+            $existe = true;
+            break;
+        }
     }
 }
 
